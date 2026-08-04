@@ -1,0 +1,710 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Royal Caterers — Andhra &amp; Telangana Feast Caterers</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,300;9..144,500;9..144,600;9..144,700&family=Karla:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --leaf-dark:#1E2B1C;
+    --leaf-mid:#2F4228;
+    --leaf-mid-2:#3B5330;
+    --ivory:#FBF6EC;
+    --ivory-2:#F3ECDA;
+    --brass:#B8862E;
+    --brass-light:#D9AF62;
+    --chili:#8C2027;
+    --chili-light:#A8353C;
+    --ink:#241F1A;
+    --ink-soft:#4A443C;
+    --line:rgba(184,134,46,0.28);
+    --shadow: 0 20px 50px rgba(20,24,14,0.25);
+    --ease: cubic-bezier(.22,.61,.36,1);
+  }
+  *{box-sizing:border-box; margin:0; padding:0;}
+  html{scroll-behavior:smooth;}
+  body{
+    font-family:'Karla', sans-serif;
+    color:var(--ink);
+    background:var(--ivory);
+    overflow-x:hidden;
+    line-height:1.6;
+  }
+  h1,h2,h3,.display{ font-family:'Fraunces', serif; font-weight:600; letter-spacing:-0.01em; }
+  .mono{ font-family:'IBM Plex Mono', monospace; letter-spacing:0.04em; }
+  a{ color:inherit; text-decoration:none; }
+  img{max-width:100%; display:block;}
+  .wrap{ max-width:1180px; margin:0 auto; padding:0 24px; }
+  .eyebrow{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:12px;
+    letter-spacing:0.18em;
+    text-transform:uppercase;
+    color:var(--brass);
+  }
+  @media (prefers-reduced-motion: reduce){
+    *{ animation-duration:0.001ms !important; animation-iteration-count:1 !important; transition-duration:0.001ms !important; scroll-behavior:auto !important; }
+  }
+
+  /* ---------- NAV ---------- */
+  .nav{
+    position:fixed; top:0; left:0; right:0; z-index:100;
+    background:linear-gradient(to bottom, rgba(30,43,28,0.92), rgba(30,43,28,0));
+    padding:18px 0;
+    transition: background 0.4s var(--ease), padding 0.4s var(--ease);
+  }
+  .nav.scrolled{
+    background:var(--leaf-dark);
+    padding:12px 0;
+    box-shadow:0 6px 24px rgba(0,0,0,0.25);
+  }
+  .nav-inner{ display:flex; align-items:center; justify-content:space-between; }
+  .seal{
+    width:46px; height:46px; border-radius:50%;
+    border:1.5px solid var(--brass);
+    display:flex; align-items:center; justify-content:center;
+    color:var(--brass-light); font-family:'Fraunces', serif; font-size:17px; font-weight:600;
+    flex-shrink:0;
+  }
+  .brand{ display:flex; align-items:center; gap:12px; color:var(--ivory); }
+  .brand-name{ font-family:'Fraunces', serif; font-size:19px; color:var(--ivory); }
+  .brand-sub{ font-family:'IBM Plex Mono', monospace; font-size:10px; letter-spacing:0.14em; color:var(--brass-light); text-transform:uppercase; }
+  .nav-links{ display:flex; gap:34px; align-items:center; }
+  .nav-links a{
+    color:var(--ivory-2); font-size:14.5px; font-weight:500; position:relative; padding:4px 0;
+  }
+  .nav-links a::after{
+    content:''; position:absolute; left:0; bottom:0; width:0; height:1px; background:var(--brass-light);
+    transition:width 0.3s var(--ease);
+  }
+  .nav-links a:hover::after{ width:100%; }
+  .nav-cta{
+    background:var(--chili); color:var(--ivory) !important; padding:10px 20px; border-radius:2px;
+    font-weight:600; font-size:13.5px; letter-spacing:0.02em;
+    border:1px solid var(--chili);
+    transition: background 0.25s var(--ease), transform 0.25s var(--ease);
+  }
+  .nav-cta:hover{ background:#A3272F; transform:translateY(-1px); }
+  .nav-toggle{ display:none; }
+
+  /* ---------- HERO ---------- */
+  .hero{
+    position:relative;
+    background:radial-gradient(ellipse at 70% 20%, #263821 0%, var(--leaf-dark) 55%);
+    min-height:100vh;
+    display:flex; align-items:center;
+    padding:140px 0 80px;
+    overflow:hidden;
+  }
+  .hero::before{
+    content:'';
+    position:absolute; inset:0;
+    background-image: radial-gradient(circle, rgba(184,134,46,0.10) 1px, transparent 1px);
+    background-size:26px 26px;
+    opacity:0.5;
+  }
+  .hero-grid{
+    position:relative; z-index:2;
+    display:grid; grid-template-columns:1.05fr 0.95fr; gap:50px; align-items:center;
+  }
+  .hero-eyebrow{ color:var(--brass-light); margin-bottom:22px; }
+  .hero h1{
+    color:var(--ivory); font-size:clamp(34px, 4.6vw, 58px); line-height:1.06; font-weight:600;
+  }
+  .hero h1 em{ font-style:italic; color:var(--brass-light); font-weight:500; }
+  .hero p.lede{
+    color:var(--ivory-2); font-size:17.5px; max-width:480px; margin:24px 0 34px; opacity:0.88;
+  }
+  .hero-ctas{ display:flex; gap:14px; flex-wrap:wrap; }
+  .btn-primary{
+    background:var(--chili); color:var(--ivory); padding:15px 28px; border-radius:2px;
+    font-weight:600; font-size:15px; display:inline-flex; align-items:center; gap:10px;
+    border:1px solid var(--chili); transition:all 0.25s var(--ease);
+  }
+  .btn-primary:hover{ background:#A3272F; transform:translateY(-2px); box-shadow:0 12px 24px rgba(140,32,39,0.35); }
+  .btn-ghost{
+    border:1px solid var(--line); color:var(--ivory); padding:14px 26px; border-radius:2px;
+    font-weight:600; font-size:15px; display:inline-flex; align-items:center; gap:10px;
+    transition:all 0.25s var(--ease);
+  }
+  .btn-ghost:hover{ background:rgba(217,175,98,0.1); border-color:var(--brass-light); }
+  .hero-trust{
+    display:flex; gap:34px; margin-top:52px; flex-wrap:wrap;
+  }
+  .trust-stat b{
+    display:block; font-family:'Fraunces', serif; font-size:26px; color:var(--brass-light); font-weight:600;
+  }
+  .trust-stat span{ font-size:12.5px; color:var(--ivory-2); opacity:0.75; text-transform:uppercase; letter-spacing:0.06em; }
+
+  /* Hero feast illustration */
+  .feast{ position:relative; width:100%; aspect-ratio:1/1; max-width:460px; margin:0 auto; }
+  .leaf-shape{
+    position:absolute; inset:0;
+    background: linear-gradient(135deg, var(--leaf-mid-2), var(--leaf-mid) 60%, #24361f);
+    clip-path: ellipse(48% 46% at 50% 50%);
+    box-shadow: inset 0 0 60px rgba(0,0,0,0.35), var(--shadow);
+    border:1px solid rgba(184,134,46,0.3);
+  }
+  .leaf-vein{
+    position:absolute; top:6%; left:50%; width:1px; height:88%; background:rgba(0,0,0,0.18);
+    transform:translateX(-50%) rotate(3deg);
+  }
+  .dish{
+    position:absolute; border-radius:50%;
+    box-shadow:0 8px 18px rgba(0,0,0,0.3), inset 0 0 0 3px rgba(251,246,236,0.85);
+    opacity:0; transform:scale(0.6) translateY(10px);
+    animation: serve 0.7s var(--ease) forwards;
+  }
+  .dish span{
+    position:absolute; bottom:-26px; left:50%; transform:translateX(-50%);
+    font-family:'IBM Plex Mono', monospace; font-size:10px; color:var(--ivory-2);
+    white-space:nowrap; letter-spacing:0.03em; opacity:0.85;
+  }
+  @keyframes serve{ to{ opacity:1; transform:scale(1) translateY(0); } }
+  .d1{ width:26%; height:26%; top:8%; left:37%; background:#C4432B; animation-delay:0.3s; } /* gongura */
+  .d2{ width:20%; height:20%; top:16%; left:8%; background:#D9AF62; animation-delay:0.55s; } /* pulihora rice */
+  .d3{ width:22%; height:22%; top:14%; right:6%; background:#E8C88F; animation-delay:0.8s; } /* pesarattu */
+  .d4{ width:30%; height:30%; bottom:8%; left:32%; background:#8C4A1E; animation-delay:1.05s; } /* biryani */
+  .d5{ width:17%; height:17%; bottom:20%; left:4%; background:#6E7F3C; animation-delay:1.3s; } /* curry */
+  .d6{ width:17%; height:17%; bottom:22%; right:4%; background:#F0D9A8; animation-delay:1.55s; } /* ariselu sweet */
+  .steam{
+    position:absolute; bottom:105%; left:50%; width:3px; height:16px;
+    background:linear-gradient(to top, rgba(251,246,236,0.5), transparent);
+    transform:translateX(-50%); border-radius:2px;
+    animation: rise 2.4s ease-in-out infinite;
+  }
+  @keyframes rise{ 0%{ opacity:0; transform:translate(-50%,4px) scaleY(0.6);} 40%{opacity:0.6;} 100%{opacity:0; transform:translate(-50%,-14px) scaleY(1.1);} }
+
+  section{ padding:96px 0; }
+  .section-head{ max-width:640px; margin-bottom:52px; }
+  .section-head h2{ font-size:clamp(28px,3.4vw,40px); margin-top:14px; color:var(--ink); }
+  .section-head p{ color:var(--ink-soft); font-size:16px; margin-top:14px; }
+  .on-dark{ background:var(--leaf-dark); color:var(--ivory); }
+  .on-dark .section-head h2{ color:var(--ivory); }
+  .on-dark .section-head p{ color:var(--ivory-2); opacity:0.85; }
+
+  /* ---------- TRUST STRIP ---------- */
+  .strip{ background:var(--ivory-2); padding:38px 0; border-top:1px solid var(--line); border-bottom:1px solid var(--line); }
+  .strip-inner{ display:flex; justify-content:space-between; flex-wrap:wrap; gap:24px; }
+  .strip-item{ text-align:center; flex:1; min-width:130px; }
+  .strip-item b{ font-family:'Fraunces', serif; font-size:28px; color:var(--chili); }
+  .strip-item span{ display:block; font-size:12px; text-transform:uppercase; letter-spacing:0.08em; color:var(--ink-soft); margin-top:4px;}
+
+  /* ---------- MENU / COURSES (feast card) ---------- */
+  .toggle-row{ display:flex; align-items:center; gap:16px; margin-bottom:44px; }
+  .toggle{
+    display:flex; border:1px solid var(--line); border-radius:30px; overflow:hidden; background:var(--ivory);
+  }
+  .toggle button{
+    padding:10px 22px; font-family:'IBM Plex Mono',monospace; font-size:13px; letter-spacing:0.04em;
+    background:transparent; border:none; cursor:pointer; color:var(--ink-soft); transition:all 0.25s var(--ease);
+  }
+  .toggle button.active{ background:var(--leaf-dark); color:var(--ivory); }
+  .courses{ display:flex; flex-direction:column; gap:2px; }
+  .course{
+    background:var(--ivory); border:1px solid var(--line); border-radius:4px; overflow:hidden;
+    margin-bottom:14px;
+  }
+  .course-head{
+    display:flex; align-items:center; gap:18px; padding:20px 26px; background:var(--leaf-mid); color:var(--ivory);
+  }
+  .course-num{ font-family:'IBM Plex Mono',monospace; color:var(--brass-light); font-size:13px; }
+  .course-head h3{ font-size:18px; font-weight:600; }
+  .course-body{ display:grid; grid-template-columns:repeat(3,1fr); gap:0; }
+  .dish-row{
+    padding:18px 26px; border-top:1px solid var(--line); border-left:1px solid var(--line);
+    display:flex; justify-content:space-between; align-items:baseline; gap:10px;
+  }
+  .dish-row .tag{
+    width:9px; height:9px; border-radius:50%; flex-shrink:0; display:inline-block; margin-right:8px;
+  }
+  .tag.veg{ background:#5C7A3A; }
+  .tag.nonveg{ background:var(--chili); }
+  .dish-name{ font-size:14.5px; font-weight:500; }
+  .dish-desc{ font-size:12.5px; color:var(--ink-soft); margin-top:3px; }
+  .hidden-dish{ display:none; }
+
+  /* Pack / category cards (Regular Pack & Gold Pack menu) */
+  .cat-grid{ display:grid; grid-template-columns:repeat(3,1fr); gap:16px; }
+  .cat-card{
+    background:var(--ivory); border:1px solid var(--line); border-radius:4px; padding:22px 24px;
+    transition:transform 0.3s var(--ease), box-shadow 0.3s var(--ease);
+  }
+  .cat-card:hover{ transform:translateY(-4px); box-shadow:var(--shadow); }
+  .cat-card-wide{ grid-column:span 3; background:var(--leaf-mid); border-color:transparent; }
+  .cat-card-wide h3, .cat-card-wide .cat-items{ color:var(--ivory); }
+  .cat-card-wide .cat-note{ color:var(--brass-light); }
+  .cat-card h3{
+    font-size:15.5px; font-family:'Fraunces', serif; font-weight:600; margin-bottom:8px;
+    display:flex; flex-wrap:wrap; align-items:baseline; gap:6px;
+  }
+  .cat-note{ font-family:'IBM Plex Mono', monospace; font-size:10.5px; color:var(--brass); text-transform:uppercase; letter-spacing:0.03em; font-weight:400; }
+  .cat-items{ font-size:13.5px; color:var(--ink-soft); line-height:1.65; }
+  .cat-or{ font-family:'IBM Plex Mono', monospace; font-size:10.5px; color:var(--brass); text-transform:uppercase; }
+
+  /* ---------- SERVICES ---------- */
+  .services-grid{ display:grid; grid-template-columns:repeat(3,1fr); gap:26px; }
+  .service-card{
+    background:var(--ivory); border:1px solid var(--line); border-radius:4px; padding:34px 28px;
+    transition:transform 0.3s var(--ease), box-shadow 0.3s var(--ease);
+  }
+  .service-card:hover{ transform:translateY(-6px); box-shadow:var(--shadow); }
+  .service-icon{
+    width:46px; height:46px; border-radius:50%; border:1.5px solid var(--brass);
+    display:flex; align-items:center; justify-content:center; color:var(--brass); margin-bottom:20px; font-size:19px;
+  }
+  .service-card h3{ font-size:19px; margin-bottom:10px; }
+  .service-card p{ font-size:14.5px; color:var(--ink-soft); }
+
+  /* ---------- PROCESS ---------- */
+  .process-list{ counter-reset:step; }
+  .step{
+    display:grid; grid-template-columns:70px 1fr; gap:24px; padding:28px 0; border-top:1px solid var(--line);
+  }
+  .step:last-child{ border-bottom:1px solid var(--line); }
+  .step-num{
+    font-family:'Fraunces', serif; font-size:34px; color:var(--brass-light); font-weight:500; opacity:0.9;
+  }
+  .step h3{ font-size:19px; margin-bottom:8px; color:var(--ivory); }
+  .step p{ font-size:14.5px; color:var(--ivory-2); opacity:0.85; max-width:560px; }
+
+  /* ---------- GALLERY (illustrative swatches, not photos) ---------- */
+  .gallery-grid{ display:grid; grid-template-columns:repeat(4,1fr); gap:14px; }
+  .g-item{
+    aspect-ratio:1/1.1; border-radius:4px; position:relative; overflow:hidden;
+    display:flex; align-items:flex-end; padding:16px;
+  }
+  .g-item span{ color:var(--ivory); font-family:'IBM Plex Mono',monospace; font-size:11.5px; letter-spacing:0.03em; position:relative; z-index:2;}
+  .g-item::after{ content:''; position:absolute; inset:0; background:linear-gradient(to top, rgba(0,0,0,0.55), transparent 60%); }
+  .g1{ background:linear-gradient(135deg,#8C4A1E,#C4432B); }
+  .g2{ background:linear-gradient(135deg,#3B5330,#5C7A3A); }
+  .g3{ background:linear-gradient(135deg,#B8862E,#E8C88F); }
+  .g4{ background:linear-gradient(135deg,#6E2A2E,#8C2027); }
+
+  /* ---------- TESTIMONIALS ---------- */
+  .testi-grid{ display:grid; grid-template-columns:repeat(3,1fr); gap:26px; }
+  .testi-card{
+    background:var(--leaf-mid); border-radius:4px; padding:30px; border:1px solid rgba(184,134,46,0.2);
+  }
+  .testi-mark{ color:var(--brass-light); font-family:'Fraunces', serif; font-size:36px; line-height:1; }
+  .testi-card p{ color:var(--ivory-2); font-size:14.5px; margin:14px 0 18px; }
+  .testi-name{ font-weight:600; color:var(--ivory); font-size:14.5px; }
+  .testi-loc{ font-size:12.5px; color:var(--brass-light); }
+
+  /* ---------- SERVICE AREA ---------- */
+  .area-wrap{ display:grid; grid-template-columns:1fr 1fr; gap:50px; align-items:center; }
+  .district-list{ display:flex; flex-wrap:wrap; gap:10px; }
+  .district{
+    padding:9px 16px; border:1px solid var(--line); border-radius:30px; font-size:13.5px; color:var(--ink-soft);
+  }
+
+  /* ---------- CONTACT ---------- */
+  .contact-wrap{ display:grid; grid-template-columns:1fr 1fr; gap:50px; }
+  .form-field{ margin-bottom:18px; }
+  .form-field label{ display:block; font-size:12.5px; text-transform:uppercase; letter-spacing:0.06em; color:var(--brass-light); margin-bottom:7px; }
+  .form-field input, .form-field select, .form-field textarea{
+    width:100%; background:transparent; border:none; border-bottom:1px solid rgba(251,246,236,0.3);
+    color:var(--ivory); padding:10px 0; font-family:'Karla',sans-serif; font-size:15px; outline:none;
+    transition:border-color 0.25s var(--ease);
+  }
+  .form-field input:focus, .form-field select:focus, .form-field textarea:focus{ border-color:var(--brass-light); }
+  .form-field select option{ color:var(--ink); }
+  .whatsapp-line{
+    display:flex; align-items:center; gap:14px; margin-top:30px; padding:18px 20px;
+    border:1px solid rgba(184,134,46,0.35); border-radius:4px;
+  }
+  .whatsapp-line b{ color:var(--ivory); font-size:14.5px; display:block; }
+  .whatsapp-line span{ color:var(--ivory-2); font-size:13px; opacity:0.8; }
+
+  footer{ background:#152014; color:var(--ivory-2); padding:56px 0 30px; }
+  .footer-grid{ display:grid; grid-template-columns:1.4fr 1fr 1fr 1fr; gap:36px; margin-bottom:40px; }
+  .footer-grid h4{ font-family:'IBM Plex Mono',monospace; font-size:12px; letter-spacing:0.1em; text-transform:uppercase; color:var(--brass-light); margin-bottom:16px; }
+  .footer-grid a{ display:block; font-size:14px; opacity:0.8; margin-bottom:10px; }
+  .footer-bottom{ border-top:1px solid rgba(251,246,236,0.12); padding-top:24px; display:flex; justify-content:space-between; font-size:12.5px; opacity:0.6; flex-wrap:wrap; gap:10px; }
+
+  .reveal{ opacity:0; transform:translateY(24px); transition:opacity 0.7s var(--ease), transform 0.7s var(--ease); }
+  .reveal.in{ opacity:1; transform:translateY(0); }
+
+  /* ---------- MOBILE ---------- */
+  @media (max-width:900px){
+    .hero-grid{ grid-template-columns:1fr; }
+    .feast{ max-width:340px; order:-1; }
+    .services-grid{ grid-template-columns:1fr; }
+    .course-body{ grid-template-columns:1fr; }
+    .dish-row{ border-left:none; }
+    .cat-grid{ grid-template-columns:1fr; }
+    .cat-card-wide{ grid-column:span 1; }
+    .gallery-grid{ grid-template-columns:repeat(2,1fr); }
+    .testi-grid{ grid-template-columns:1fr; }
+    .area-wrap{ grid-template-columns:1fr; }
+    .contact-wrap{ grid-template-columns:1fr; }
+    .footer-grid{ grid-template-columns:1fr 1fr; }
+    .nav-links{
+      position:fixed; top:0; right:-100%; width:78%; height:100vh; background:var(--leaf-dark);
+      flex-direction:column; justify-content:center; align-items:flex-start; padding:40px; gap:26px;
+      transition:right 0.35s var(--ease); z-index:99;
+    }
+    .nav-links.open{ right:0; }
+    .nav-toggle{
+      display:flex; flex-direction:column; gap:5px; background:none; border:none; cursor:pointer; z-index:101;
+      padding:6px;
+    }
+    .nav-toggle span{ width:22px; height:1.5px; background:var(--ivory); display:block; }
+    .strip-inner{ justify-content:flex-start; }
+  }
+  @media (max-width:560px){
+    .hero{ padding-top:120px; }
+    .hero-trust{ gap:22px; }
+    .gallery-grid{ grid-template-columns:1fr 1fr; }
+  }
+</style>
+</head>
+<body>
+
+<nav class="nav" id="nav">
+  <div class="wrap nav-inner">
+    <div class="brand">
+      <div class="seal">RC</div>
+      <div>
+        <div class="brand-name">Royal Caterers</div>
+        <div class="brand-sub">Warangal · Est. wedding feasts</div>
+      </div>
+    </div>
+    <div class="nav-links" id="navLinks">
+      <a href="#menu">Menus</a>
+      <a href="#services">Services</a>
+      <a href="#process">Process</a>
+      <a href="#gallery">Gallery</a>
+      <a href="#reviews">Reviews</a>
+      <a href="#contact" class="nav-cta">Get a Quote</a>
+    </div>
+    <button class="nav-toggle" id="navToggle"><span></span><span></span><span></span></button>
+  </div>
+</nav>
+
+<section class="hero">
+  <div class="wrap hero-grid">
+    <div>
+      <div class="eyebrow hero-eyebrow">Andhra &amp; Telangana Wedding Catering</div>
+      <h1>We don't just serve food — we serve <em>moments</em>, and a plate full of stories.</h1>
+      <p class="lede">From gongura and gutti vankaya to Hyderabadi biryani and ariselu — Royal Caterers brings the authentic Andhra-Telangana wedding spread to your mandapam, cooked fresh, served with pride.</p>
+      <div class="hero-ctas">
+        <a href="#contact" class="btn-primary">Request a Quote →</a>
+        <a href="#menu" class="btn-ghost">View Our Menus</a>
+      </div>
+      <div class="hero-trust">
+        <div class="trust-stat"><b>500+</b><span>Weddings Catered</span></div>
+        <div class="trust-stat"><b>12</b><span>Years of Service</span></div>
+        <div class="trust-stat"><b>20+</b><span>Districts Covered</span></div>
+      </div>
+    </div>
+    <div class="feast">
+      <div class="leaf-shape"></div>
+      <div class="leaf-vein"></div>
+      <div class="dish d1"><span>Gongura Mutton</span></div>
+      <div class="dish d2"><span>Pulihora</span></div>
+      <div class="dish d3"><span>Pesarattu</span></div>
+      <div class="dish d4"><span>Hyderabadi Biryani<div class="steam"></div></span></div>
+      <div class="dish d5"><span>Gutti Vankaya</span></div>
+      <div class="dish d6"><span>Ariselu</span></div>
+    </div>
+  </div>
+</section>
+
+<div class="strip">
+  <div class="wrap strip-inner">
+    <div class="strip-item"><b>4.9/5</b><span>Client Rating</span></div>
+    <div class="strip-item"><b>50+</b><span>Live Counters</span></div>
+    <div class="strip-item"><b>2,000+</b><span>Plates / Event, Max</span></div>
+    <div class="strip-item"><b>Veg &amp; Non-Veg</b><span>Full Spread</span></div>
+  </div>
+</div>
+
+<section id="menu">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <div class="eyebrow">The Wedding Spread</div>
+      <h2>Two packages, built the way Telangana families actually choose their feast.</h2>
+      <p>Every category gives you a choice — pick your favourites from each, and we cook it fresh for your event. Want the complete pricing sheet? <a href="royal-caterers-menu.pdf" target="_blank" style="color:var(--chili); text-decoration:underline;">Download the full menu (PDF)</a>.</p>
+    </div>
+    <div class="toggle-row reveal">
+      <div class="toggle">
+        <button class="active" data-pack="regular">Regular Pack</button>
+        <button data-pack="gold">Gold Pack</button>
+      </div>
+    </div>
+
+    <div class="pack" id="pack-regular">
+      <div class="cat-grid">
+        <div class="cat-card reveal"><h3>Non-Veg <span class="cat-note">(any one + any one)</span></h3><p class="cat-items">Chicken Biryani, Butter Chicken, Chicken Fry <span class="cat-or">— any one</span><br>Mutton Biryani, Mutton Curry <span class="cat-or">— any one</span></p></div>
+        <div class="cat-card reveal"><h3>Rice <span class="cat-note">(any one)</span></h3><p class="cat-items">Veg Biryani, Jeera Rice, Bagara Rice</p></div>
+        <div class="cat-card reveal"><h3>Dal <span class="cat-note">(any one)</span></h3><p class="cat-items">Chef's daily preparation</p></div>
+        <div class="cat-card reveal"><h3>Roti <span class="cat-note">(any one)</span></h3><p class="cat-items">Rumali Roti, Puri, Phulka, Butter Naan</p></div>
+        <div class="cat-card reveal"><h3>Veg Curry <span class="cat-note">(any two)</span></h3><p class="cat-items">Paneer Butter Masala, Mixed Vegetables, Aloo (all types), Palak Paneer, Tomato Drumstick</p></div>
+        <div class="cat-card reveal"><h3>Veg Fry <span class="cat-note">(any one)</span></h3><p class="cat-items">Bandi Palli, Gobi/Cabbage, Aloo, Aratikaya, Dondakaya Fry</p></div>
+        <div class="cat-card reveal"><h3>Sweet &amp; Ice Cream <span class="cat-note">(any one)</span></h3><p class="cat-items">Double ka Meetha, Jilebi, Gulab Jamun, Butterscotch, Vanilla, Fruit Salad</p></div>
+        <div class="cat-card reveal cat-card-wide"><h3>Regular Items <span class="cat-note">(included)</span></h3><p class="cat-items">Plain Rice, Sambar/Rasam/Pachipulusu, Pickles, Powders, Ghee, Raitha, Curd, Papad, Green Salad, Somp, Water</p></div>
+      </div>
+    </div>
+
+    <div class="pack" id="pack-gold" style="display:none;">
+      <div class="cat-grid">
+        <div class="cat-card reveal"><h3>Welcome Drink <span class="cat-note">(any one)</span></h3><p class="cat-items">Badam Milk (hot &amp; cool), Watermelon Juice, Pineapple Juice, Tomato Soup, Assorted Soft Drinks</p></div>
+        <div class="cat-card reveal"><h3>Veg Starters <span class="cat-note">(any one)</span></h3><p class="cat-items">Veg Manchurian, Veg Spring Roll, Paneer 65, Corn Samosa, Onion Samosa</p></div>
+        <div class="cat-card reveal"><h3>Non-Veg Starters <span class="cat-note">(any one)</span></h3><p class="cat-items">Chicken 65, Pepper Chicken, Chilli Chicken, Chicken Manchurian, Crispy Chicken</p></div>
+        <div class="cat-card reveal"><h3>Roti <span class="cat-note">(any one)</span></h3><p class="cat-items">Puri, Phulka, Baby Naan, Rumali Roti, Chapathi, Butter Naan</p></div>
+        <div class="cat-card reveal"><h3>Chicken <span class="cat-note">(any one)</span></h3><p class="cat-items">Chicken Biryani, Chicken Fry, Chicken Curry, Butter Chicken, Kadai Chicken, Dum Chicken</p></div>
+        <div class="cat-card reveal"><h3>Mutton <span class="cat-note">(any one)</span></h3><p class="cat-items">Mutton Biryani, Mutton Curry, Methi Mutton, Gongura Mutton</p></div>
+        <div class="cat-card reveal"><h3>Fish <span class="cat-note">(any one)</span></h3><p class="cat-items">Apollo Fish, Basha Fish, Fish Pulusu</p></div>
+        <div class="cat-card reveal"><h3>Rice <span class="cat-note">(any one)</span></h3><p class="cat-items">Veg Dum Biryani, Veg Biryani, Veg Fried Rice, Veg Pulao, Bagara Rice</p></div>
+        <div class="cat-card reveal"><h3>Veg Curry <span class="cat-note">(any two)</span></h3><p class="cat-items">Paneer Butter Masala, Chole Masala, Bagara Baigan, Tomato Drumstick, Mixed Vegetable, Aloo (all types), Palak Paneer, Methi Chaman, or your choice</p></div>
+        <div class="cat-card reveal"><h3>Dal <span class="cat-note">(any one)</span></h3><p class="cat-items">Dal with Vegetable, Dal with Leaves, Dal Fry, or your choice</p></div>
+        <div class="cat-card reveal"><h3>Fry's <span class="cat-note">(any one)</span></h3><p class="cat-items">Bandi Kaju/Palli, Gobi/Cabbage, Aloo, Aratikaya, Channa Fry, Dondakaya Fry, Kanda Fry, or your choice</p></div>
+        <div class="cat-card reveal"><h3>Sweets <span class="cat-note">(any one)</span></h3><p class="cat-items">Gulab Jamun, Carrot Halwa, Khala Jamun, Khadu ka Kheer, Jilebi</p></div>
+        <div class="cat-card reveal"><h3>Special Sweets <span class="cat-note">(any one)</span></h3><p class="cat-items">Rasmalai, Tawa Sweet, Rasagulla, Kaju Katli</p></div>
+        <div class="cat-card reveal"><h3>Desserts <span class="cat-note">(any one)</span></h3><p class="cat-items">Vanilla with Qurbani, Butterscotch, Strawberry, Fruit Salad</p></div>
+        <div class="cat-card reveal cat-card-wide"><h3>Regular Items <span class="cat-note">(included)</span></h3><p class="cat-items">Green Salad, Plain Rice, Pickles, Powders, Mirchi ka Salan, Sambar/Rasam/Pachipulusu, Raitha (Curd), Ghee, Papad, Somp, Water Bottles, Pan</p></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="services" style="background:var(--ivory-2);">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <div class="eyebrow">What We Cater</div>
+      <h2>One kitchen, every occasion your family hosts.</h2>
+    </div>
+    <div class="services-grid">
+      <div class="service-card reveal">
+        <div class="service-icon">✦</div>
+        <h3>Wedding Feasts</h3>
+        <p>Full mandapam catering — from the pellikuthuru lunch to the main wedding-day spread, sized from 200 to 2,000 guests.</p>
+      </div>
+      <div class="service-card reveal">
+        <div class="service-icon">◆</div>
+        <h3>Corporate Events</h3>
+        <p>Office inaugurations, annual days and business lunches, plated or buffet, with on-time delivery you can rely on.</p>
+      </div>
+      <div class="service-card reveal">
+        <div class="service-icon">●</div>
+        <h3>Private Functions</h3>
+        <p>Naming ceremonies, birthdays and housewarmings — smaller spreads with the same kitchen standards as our weddings.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="process" class="on-dark">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <div class="eyebrow">How Booking Works</div>
+      <h2>From enquiry to the last plate served.</h2>
+    </div>
+    <div class="process-list">
+      <div class="step reveal"><div class="step-num">01</div><div><h3>Enquiry &amp; Date Check</h3><p>Share your event date, guest count and venue — we confirm availability within a day, usually over WhatsApp.</p></div></div>
+      <div class="step reveal"><div class="step-num">02</div><div><h3>Tasting Session</h3><p>Sample your shortlisted dishes at our kitchen or a nearby venue before you commit to the final menu.</p></div></div>
+      <div class="step reveal"><div class="step-num">03</div><div><h3>Menu &amp; Quote Finalised</h3><p>We lock the course-wise menu, live counters and final headcount, with a clear written quote — no surprises.</p></div></div>
+      <div class="step reveal"><div class="step-num">04</div><div><h3>Event Day Service</h3><p>Our team arrives early, sets up live counters and banana-leaf service, and manages the kitchen through the last guest.</p></div></div>
+    </div>
+  </div>
+</section>
+
+<section id="gallery">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <div class="eyebrow">From Recent Weddings</div>
+      <h2>A glimpse of the spread.</h2>
+    </div>
+    <div class="gallery-grid">
+      <div class="g-item g1 reveal"><span>Gongura Mutton Counter</span></div>
+      <div class="g-item g2 reveal"><span>Vegetarian Curry Line</span></div>
+      <div class="g-item g3 reveal"><span>Live Biryani Dum</span></div>
+      <div class="g-item g4 reveal"><span>Sweets &amp; Ariselu Table</span></div>
+    </div>
+  </div>
+</section>
+
+<section id="reviews" style="background:var(--ivory-2);">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <div class="eyebrow">What Families Say</div>
+      <h2>Trusted for the day that matters most.</h2>
+    </div>
+    <div class="testi-grid">
+      <div class="testi-card reveal">
+        <div class="testi-mark">"</div>
+        <p>Every relative asked who catered our daughter's wedding. The gongura mutton was exactly like home-cooked, just for 800 people.</p>
+        <div class="testi-name">Lakshmi Prasad</div>
+        <div class="testi-loc">Hanamkonda</div>
+      </div>
+      <div class="testi-card reveal">
+        <div class="testi-mark">"</div>
+        <p>They handled our reception at short notice, live counters and all. Nothing ran out, nothing was late.</p>
+        <div class="testi-name">Srinivas Rao</div>
+        <div class="testi-loc">Karimnagar</div>
+      </div>
+      <div class="testi-card reveal">
+        <div class="testi-mark">"</div>
+        <p>The tasting session helped us plan the exact menu we wanted. Worth every rupee for the peace of mind alone.</p>
+        <div class="testi-name">Anitha Reddy</div>
+        <div class="testi-loc">Khammam</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="area">
+  <div class="wrap area-wrap">
+    <div class="reveal">
+      <div class="eyebrow">Service Area</div>
+      <h2 style="margin-top:14px; font-size:clamp(26px,3vw,34px);">Wherever your mandapam is, in Telangana.</h2>
+      <p style="color:var(--ink-soft); margin-top:16px; font-size:15.5px;">Based in Warangal, we travel across the state for weddings — kitchen team, live counters and service staff included.</p>
+    </div>
+    <div class="district-list reveal">
+      <span class="district">Warangal</span>
+      <span class="district">Hanamkonda</span>
+      <span class="district">Karimnagar</span>
+      <span class="district">Khammam</span>
+      <span class="district">Nalgonda</span>
+      <span class="district">Hyderabad</span>
+      <span class="district">Nizamabad</span>
+      <span class="district">Adilabad</span>
+      <span class="district">Mahbubnagar</span>
+      <span class="district">Siddipet</span>
+      <span class="district">Jangaon</span>
+      <span class="district">and beyond</span>
+    </div>
+  </div>
+</section>
+
+<section id="contact" class="on-dark">
+  <div class="wrap contact-wrap">
+    <div class="reveal">
+      <div class="eyebrow">Get a Quote</div>
+      <h2 style="margin-top:14px; font-size:clamp(26px,3vw,34px);">Tell us your date, we'll bring the menu.</h2>
+      <p style="color:var(--ivory-2); opacity:0.85; margin-top:16px; font-size:15.5px;">Fill the form and our team responds within 24 hours with availability and an initial quote.</p>
+      <div class="whatsapp-line">
+        <div>
+          <b>Prefer WhatsApp?</b>
+          <span>Message +91 97019 67225 with your event date and guest count for a quicker reply.</span>
+        </div>
+      </div>
+    </div>
+    <div class="reveal">
+      <form onsubmit="event.preventDefault(); alert('Thank you — we will get back to you within 24 hours.');">
+        <div class="form-field">
+          <label>Your Name</label>
+          <input type="text" required placeholder="Full name">
+        </div>
+        <div class="form-field">
+          <label>Phone Number</label>
+          <input type="tel" required placeholder="10-digit mobile number">
+        </div>
+        <div class="form-field">
+          <label>Event Date</label>
+          <input type="date" required>
+        </div>
+        <div class="form-field">
+          <label>Guest Count</label>
+          <select>
+            <option>Up to 200</option>
+            <option>200 – 500</option>
+            <option>500 – 1,000</option>
+            <option>1,000+</option>
+          </select>
+        </div>
+        <div class="form-field">
+          <label>Venue / City</label>
+          <input type="text" placeholder="e.g. Kazipet, Warangal">
+        </div>
+        <div class="form-field">
+          <label>Anything else?</label>
+          <textarea rows="3" placeholder="Preferred dishes, dietary notes, etc."></textarea>
+        </div>
+        <button type="submit" class="btn-primary" style="width:100%; justify-content:center; margin-top:10px;">Send Enquiry →</button>
+      </form>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <div class="footer-grid">
+      <div>
+        <div class="brand" style="margin-bottom:14px;">
+          <div class="seal">RC</div>
+          <div class="brand-name" style="color:var(--ivory);">Royal Caterers</div>
+        </div>
+        <p style="font-size:13.5px; opacity:0.7; max-width:280px;">Andhra &amp; Telangana wedding catering, based in Warangal, serving families across the state.</p>
+      </div>
+      <div>
+        <h4>Explore</h4>
+        <a href="#menu">Menus</a>
+        <a href="#services">Services</a>
+        <a href="#process">Process</a>
+        <a href="#reviews">Reviews</a>
+      </div>
+      <div>
+        <h4>Contact</h4>
+        <a href="#contact">Request a Quote</a>
+        <a href="https://wa.me/919701967225" target="_blank">WhatsApp</a>
+        <a href="tel:+919701967225">Call Us: +91 97019 67225</a>
+      </div>
+      <div>
+        <h4>Service Area</h4>
+        <a href="#area">Warangal &amp; Telangana</a>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>© 2026 Royal Caterers. All rights reserved.</span>
+      <span>Designed for the feasts that matter.</span>
+    </div>
+  </div>
+</footer>
+
+<script>
+  const nav = document.getElementById('nav');
+  window.addEventListener('scroll', () => {
+    nav.classList.toggle('scrolled', window.scrollY > 40);
+  });
+
+  const navToggle = document.getElementById('navToggle');
+  const navLinks = document.getElementById('navLinks');
+  navToggle.addEventListener('click', () => navLinks.classList.toggle('open'));
+  navLinks.querySelectorAll('a').forEach(a => a.addEventListener('click', () => navLinks.classList.remove('open')));
+
+  // Regular Pack / Gold Pack toggle
+  const packBtns = document.querySelectorAll('.toggle button[data-pack]');
+  const packRegular = document.getElementById('pack-regular');
+  const packGold = document.getElementById('pack-gold');
+  packBtns.forEach(btn => {
+    btn.addEventListener('click', () => {
+      packBtns.forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+      if (btn.dataset.pack === 'regular') {
+        packRegular.style.display = '';
+        packGold.style.display = 'none';
+      } else {
+        packRegular.style.display = 'none';
+        packGold.style.display = '';
+      }
+      packGold.querySelectorAll('.reveal').forEach(el => el.classList.add('in'));
+      packRegular.querySelectorAll('.reveal').forEach(el => el.classList.add('in'));
+    });
+  });
+
+  // Scroll reveal
+  const revealEls = document.querySelectorAll('.reveal');
+  const io = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) entry.target.classList.add('in');
+    });
+  }, { threshold: 0.12 });
+  revealEls.forEach(el => io.observe(el));
+</script>
+
+</body>
+</html>
